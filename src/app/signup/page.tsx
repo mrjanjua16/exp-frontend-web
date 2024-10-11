@@ -24,7 +24,7 @@ export default function SignInPage() {
             className="w-full h-auto"
           />
           <Card className="absolute top-12 left-12 p-2 shadow-lg">
-            <h3 className="text-sm font-semibold">Income</h3>
+            <h3 className="text-sm font-semibold">Sessions</h3>
             <p className="text-xs text-gray-500">This Month</p>
             <div className="flex items-baseline mt-2">
               <span className="text-2xl font-bold">45.1k</span>
@@ -32,10 +32,10 @@ export default function SignInPage() {
             </div>
           </Card>
           <Card className="absolute bottom-12 right-12 p-2 shadow-lg">
-            <h3 className="text-sm font-semibold">Expenses</h3>
-            <p className="text-xs text-gray-500">This Month</p>
+            <h3 className="text-sm font-semibold">Sales</h3>
+            <p className="text-xs text-gray-500">Last Year</p>
             <div className="flex items-baseline mt-2">
-              <span className="text-2xl font-bold">35k</span>
+              <span className="text-2xl font-bold">175k</span>
               <span className="ml-2 text-sm text-red-500">-16.2%</span>
             </div>
           </Card>
@@ -48,12 +48,20 @@ export default function SignInPage() {
             <p className="text-gray-600 mb-6">Make your expense management easy and fun!</p>
             <form className="space-y-4">
               <div className="space-y-2">
+                <Label htmlFor="full_name">Full Name</Label>
+                <Input id="full_name" placeholder="John Doe" />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" type="email" placeholder="john.doe@example.com" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" type="password" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password_confirmation">Confirm Password</Label>
+                <Input id="password_confirmation" type="password" />
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="terms" />
@@ -70,8 +78,8 @@ export default function SignInPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}
-              <Link href="/signup" className="text-purple-600 hover:underline">
-                Sign up instead
+              <Link href="#" className="text-purple-600 hover:underline">
+                Sign in instead
               </Link>
             </p>
             {/* Social Media Sign Ins */}
