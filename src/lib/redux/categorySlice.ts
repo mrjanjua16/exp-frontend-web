@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchCategories = createAsyncThunk('categories/fetch', async (_, { rejectWithValue }) => {
     try {
       return await fetchCategoriesApi();
-    } catch (error: any) {
+    } catch (error) {
       return rejectWithValue(error.response.data);
     }
   });
@@ -12,14 +12,14 @@ export const fetchCategories = createAsyncThunk('categories/fetch', async (_, { 
 export const createCategory = createAsyncThunk('categories/create', async (categoryData, { rejectWithValue }) => {
     try {
       return await createCategoryApi(categoryData);
-    } catch (error: any) {
+    } catch (error) {
       return rejectWithValue(error.response.data);
     }
   });
 export const updateCategory = createAsyncThunk('categories/update', async ({ id, categoryData }, { rejectWithValue }) => {
     try {
       return await updateCategoryApi(id, categoryData);
-    } catch (error: any) {
+    } catch (error) {
       return rejectWithValue(error.response.data);
     }
   });
@@ -27,7 +27,7 @@ export const updateCategory = createAsyncThunk('categories/update', async ({ id,
 export const deleteCategory = createAsyncThunk('categories/delete', async (id, { rejectWithValue }) => {
     try {
       return await deleteCategoryApi(id);
-    } catch (error: any) {
+    } catch (error) {
       return rejectWithValue(error.response.data);
     }
   });

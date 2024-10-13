@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/api.js", "src/app/api/transaction.js", "src/app/api/auth.js", "src/app/api/category.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/api/api.ts", "src/lib/api/transaction.jts", "src/lib/api/auth.ts", "src/lib/api/category.ts", "src/lib/redux/userCategoriesSlice.ts", "src/lib/redux/categorySlice.ts", "src/lib/redux/authSlice.ts"],
   "exclude": ["node_modules"]
 }

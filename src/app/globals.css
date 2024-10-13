@@ -76,3 +76,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.custom-transition {
+  transition: transform 1s ease-in-out;
+}
