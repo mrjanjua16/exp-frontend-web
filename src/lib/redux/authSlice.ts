@@ -16,8 +16,12 @@ const initialState: AuthState = {
   error: null,
 };
 
+let token: string | null = null;
+
 // Check if there's a token in localStorage and set the initial state accordingly
-const token = localStorage.getItem('token');
+if (typeof window !== 'undefined') {
+  token = localStorage.getItem('token');
+}
 if (token) {
   initialState.currentUser = { token }; // Adjust this according to your user object structure
 }

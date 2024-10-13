@@ -5,10 +5,10 @@ import tokenMiddleware from './middleware/middleware'; // Adjust the import acco
 
 export const store = configureStore({
     reducer: {
-        auth: authReducer, // Add your auth reducer
+        auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(tokenMiddleware), // Add your custom middleware
+        getDefaultMiddleware().concat(tokenMiddleware),
 });
 
 // Infer the type of the store
