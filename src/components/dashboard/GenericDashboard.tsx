@@ -58,7 +58,7 @@ export default function DashboardLayout({
       <aside
         className={`${
           isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 left-0 z-50 w-40 bg-white shadow-lg transition-transform duration-300 ease-in-out sm:static sm:translate-x-0`}
+        } fixed inset-y-0 left-0 z-50 w-40 bg-gray-100 transition-transform duration-300 ease-in-out sm:static sm:translate-x-0`}
       >
         <div className="flex h-full flex-col">
           <div className="flex h-16 items-center justify-center">
@@ -67,7 +67,7 @@ export default function DashboardLayout({
           <nav className="flex-1 space-y-1 px-2 py-4">
             {sidebarItems.map((item, index) => (
               <div key={index}>
-                <Button variant="ghost" className="w-full justify-start" onClick={item.onClick}>
+                <Button variant="ghost" className="w-full justify-start hover:bg-white" onClick={item.onClick}>
                   {item.icon}
                   {item.label}
                   {item.subItems && (
@@ -92,11 +92,11 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header */}
-        <header className="flex h-16 items-center justify-between border-b bg-white px-4 lg:px-6">
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileSidebar}>
+        <header className="flex h-16 items-center justify-between bg-gray-100 px-4 lg:px-6">
+          {/* <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileSidebar}>
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle sidebar</span>
-          </Button>
+          </Button> */}
           {header ?? <h1 className="text-2xl font-semibold text-gray-800">Overview</h1>}
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="icon">
@@ -113,10 +113,6 @@ export default function DashboardLayout({
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   {dropdownLabel}
-                  {/* <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">John Doe</p>
-                    <p className="text-xs leading-none text-muted-foreground">john.doe@example.com</p>
-                  </div> */}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                   {dropdownItems.map((item, index) => (
@@ -127,8 +123,6 @@ export default function DashboardLayout({
                       </DropdownMenuItem>
                     </div>
                   ))}
-                  {/* <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span> */}
                 <DropdownMenuItem>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
