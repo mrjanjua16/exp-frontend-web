@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import setAuthToken from '@/lib/middleware/middleware'; 
+import { loadUserFromLocalStorage } from '../redux/authSlice';
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();
@@ -9,9 +10,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      dispatch(setAuthToken(token)); // Action to set the token in Redux
+      dispatch(loadUserFromLocalStorage());
     }
   }, [dispatch]);
+  
 
   return <>{children}</>;
 };

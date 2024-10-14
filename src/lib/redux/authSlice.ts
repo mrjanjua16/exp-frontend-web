@@ -30,48 +30,47 @@ if (token) {
 export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
     const response = await loginApi(credentials);
-    // Save the token to localStorage
-    localStorage.setItem('token', response.token);
+    console.log('Login Response:', response); // Debugging step
+    if (response && response.token) {
+      localStorage.setItem('token', response.token.token); // Ensure token exists before storing
+    } else {
+      throw new Error('Token not found in response');
+    }
     return response;
   } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue((error as any).response.data);
-    }
-    return rejectWithValue(error);
+    console.error('Login error:', error); // Log the full error
+    return rejectWithValue(error.response?.data || error.message);
   }
 });
 
 export const signup = createAsyncThunk('auth/signup', async (userData, { rejectWithValue }) => {
   try {
     const response = await signupApi(userData);
-    // Save the token to localStorage
-    localStorage.setItem('token', response.token);
+    if (response && response.token) {
+      localStorage.setItem('token', response.token.token); // Ensure token exists before storing
+    } else {
+      throw new Error('Token not found in response');
+    }
     return response;
   } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue((error as any).response.data);
-    }
-    return rejectWithValue(error);
+    console.error('Signup error:', error); // Log the full error
+    return rejectWithValue(error.response?.data || error.message);
   }
 });
 
-// New thunk to load user from localStorage
-export const loadUserFromLocalStorage = createAsyncThunk('auth/loadUserFromLocalStorage', async (_, { rejectWithValue }) => {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    return rejectWithValue('No token found');
-  }
 
-  try {
-    // Assuming you have a function to fetch user data using the token
-    return await fetchUserApi();
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue((error as any).response.data);
+export const loadUserFromLocalStorage = createAsyncThunk('auth/loadUserFromLocalStorage', async () => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return token;
+    } else {
+      throw new Error('No token found');
     }
-    return rejectWithValue(error);
   }
 });
+
+
 
 const authSlice = createSlice({
   name: 'auth',

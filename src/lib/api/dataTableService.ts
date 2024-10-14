@@ -1,7 +1,7 @@
 import api from "./api";
 
 export const listRecords = (resource, params) => {
-  return api.get(`${resource}/list`, { params });
+  return api.get(`${resource}/`, { params });
 };
 
 export const updateRecord = (resource, id, payload) => {

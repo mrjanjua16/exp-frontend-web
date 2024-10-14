@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLogin, useSignup } from "@/lib/hooks/auth";
-import { useRouter } from 'next/navigation'; // Update import to next/navigation for app directory
+import { useRouter } from 'next/navigation';
 
 export default function GenericAuthPage({
   imageSrc,
@@ -33,7 +33,7 @@ export default function GenericAuthPage({
   termsLink: string;
 }) {
   const [isSignUp, setIsSignUp] = useState(false);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     full_name: '',
@@ -56,28 +56,27 @@ export default function GenericAuthPage({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSignUp) {
-      signupMutation.mutate({
+      const result = await signupMutation({
         full_name: formData.full_name,
         email: formData.email,
         password: formData.password,
         password_confirmation: formData.password_confirmation,
         terms: formData.terms,
-      }, {
-        onSuccess: () => {
-          router.push('/dashboard'); // Use router.push for navigation
-        },
       });
+      if (!result.error) {
+        router.push('/dashboard');
+      }
     } else {
-      loginMutation.mutate({
+      const result = await loginMutation({
         email: formData.email,
         password: formData.password,
-      }, {
-        onSuccess: () => {
-          router.push('/dashboard'); // Use router.push for navigation
-        },
       });
+      if (!result.error) {
+        router.push('/dashboard');
+      }
     }
   };
+  
 
   const handleSignInClick = () => setIsSignUp(false);
   const handleSignUpClick = () => setIsSignUp(true);

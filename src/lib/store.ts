@@ -1,7 +1,7 @@
 // store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from './redux/authSlice'; // Adjust the import according to your folder structure
-import tokenMiddleware from './middleware/middleware'; // Adjust the import according to your folder structure
+import authReducer from './redux/authSlice';
+import tokenMiddleware from './middleware/middleware';
 
 export const store = configureStore({
     reducer: {

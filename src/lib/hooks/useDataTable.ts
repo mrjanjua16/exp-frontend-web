@@ -39,7 +39,8 @@ const useDataTable = (resource, nameKey, fields) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const { data } = await datatableService.listRecords(resource, {
+      console.log("Resource before dataTableService :", resource)
+      const data = await dataTableService.listRecords(resource, {
         page: currentPage + 1,
         size: pageSize,
         search,
